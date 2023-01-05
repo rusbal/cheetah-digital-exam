@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :order do
-    guest { nil }
+    guest
     timestamp { "2023-01-05 20:39:30" }
     store_id { "MyString" }
     transaction_id { "MyString" }
