@@ -17,6 +17,8 @@ raymond@philippinedev.com
 
 ## Guest
 1. string_id - From request (`54D0D284B0`)
+2. first_name - Generated fake first name
+3. last_name - Generated fake last name
 
 # Service Objects
 1.  `OrderProcessor` - Creates order, order items. For testing purposes it also creates fake Guest if it does not exist. For production, Guests should already exists before this API endpoint is invoked.
