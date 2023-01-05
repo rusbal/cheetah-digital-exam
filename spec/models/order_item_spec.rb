@@ -44,4 +44,14 @@ RSpec.describe OrderItem, type: :model do
       expect(order_item).to_not be_valid
     end
   end
+
+  describe "computed values" do
+    let!(:order_item) { FactoryBot.create(:order_item, order: order, quantity: 2, price: 10.0) }
+
+    describe "#total_price" do
+      it 'computes total_price' do
+        expect(order_item.total_price).to eql order_item.price * order_item.quantity
+      end
+    end
+  end
 end

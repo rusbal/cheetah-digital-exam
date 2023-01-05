@@ -8,13 +8,11 @@ class Order < ApplicationRecord
   validates :discount, presence: true
   validates :points, presence: true
 
-  delegate :total, to: :order_items
-
   def subtotal
     @subtotal ||= total - discount
   end
 
   def total
-    @total ||= order_items.sum { |item| item.price * item.quantity }
+    @total ||= order_items.sum(&:total_price)
   end
 end

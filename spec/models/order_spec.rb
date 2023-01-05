@@ -63,4 +63,22 @@ RSpec.describe Order, type: :model do
       expect(order).to_not be_valid
     end
   end
+
+  describe "computed values" do
+    let(:order) { FactoryBot.create(:order, discount: 2.50) }
+    let!(:order_item1) { FactoryBot.create(:order_item, order: order, quantity: 2, price: 10.0) }
+    let!(:order_item2) { FactoryBot.create(:order_item, order: order, quantity: 7, price: 11.5) }
+
+    describe "#total" do
+      it 'computes total' do
+        expect(order.total).to eql order_item1.total_price + order_item2.total_price
+      end
+    end
+
+    describe "#subtotal" do
+      it 'computes subtotal' do
+        expect(order.subtotal).to eql order.total - order.discount
+      end
+    end
+  end
 end
