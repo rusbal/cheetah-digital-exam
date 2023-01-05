@@ -7,6 +7,7 @@ module Api
 
       private
 
+      # Task 1. accepts an API payload (See "Request Payload")
       def create_params
         params.permit(
           :guest_id,

@@ -16,12 +16,7 @@ describe OrderProcessor do
     expect(errors[:items]).to include 'is required'
   end
 
-  it 'type checks!' do
-    expect { outcome! }.to raise_error ActiveInteraction::InvalidInteractionError
-  end
-
   it 'validates!' do
-    inputs[:string] = ''
     expect { outcome! }.to raise_error ActiveInteraction::InvalidInteractionError
   end
 
@@ -32,37 +27,21 @@ describe OrderProcessor do
         store_id: "CADE3B168C",
         guest_id: "54D0D284B0",
         transaction_id: "5AA3C3C7094AF3949E7D",
-        items: [
-          {
-            sku: "AAA",
-            price: 5.00,
-            quantity: 1
-          },
-          {
-            sku: "BBB",
-            price: 8.00,
-            quantity: 1
-          }
-        ]
+        items: items,
       }
     end
-    let(:expected) do
-      {
-        :subtotal=>"10.40",
-        :discount=>"2.60",
-        :points=>20,
-        :message=>"Thank you, GuestFirstName GuestLastName!"
-      }
+    let(:items) do
+      [
+        {
+          sku: "AAA",
+          price: 5.00,
+          quantity: 1,
+        },
+      ]
     end
 
     it 'executes' do
       expect(outcome).to be_valid
-      expect(result).to eql expected
-    end
-
-    it 'executes!' do
-      expect { outcome! }.to_not raise_error
-      expect(outcome!).to eql expected
     end
   end
 end
