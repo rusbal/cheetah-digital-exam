@@ -21,7 +21,7 @@ raymond@philippinedev.com
 3. last_name - Generated fake last name
 
 # Service Objects
-1.  `OrderProcessor` - Creates order, order items. For testing purposes it also creates fake Guest if it does not exist. For production, Guests should already exist before this API endpoint is invoked.
+1.  `OrderProcessor` - Creates order, order items
 2.  `OrderDiscountCalculator` - This is invoked from `OrderProcessor` and returns the applicable discount based on the discount logic.
 
 # How to test?

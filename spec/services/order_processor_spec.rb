@@ -7,6 +7,10 @@ describe OrderProcessor do
   let(:result) { outcome.result }
   let(:errors) { outcome.errors }
 
+  before do
+    FactoryBot.create(:guest, string_id: '54D0D284B0')
+  end
+
   it 'type checks' do
     expect(outcome).to_not be_valid
     expect(errors[:timestamp]).to include 'is required'
@@ -37,11 +41,18 @@ describe OrderProcessor do
           price: 5.00,
           quantity: 1,
         },
+        {
+          sku: "BBB",
+          price: 8.00,
+          quantity: 1,
+        },
       ]
     end
 
     it 'executes' do
       expect(outcome).to be_valid
+      expect(Order.count).to eq 1
+      expect(OrderItem.count).to eq 2
     end
   end
 end

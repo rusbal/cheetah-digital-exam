@@ -58,14 +58,6 @@ class OrderProcessor < ActiveInteraction::Base
   end
 
   def guest
-    Guest.find_by(string_id: guest_id) || create_guest_with_fake_name
-  end
-
-  def create_guest_with_fake_name
-    Guest.create(
-      string_id: guest_id,
-      first_name: Faker::Name.first_name,
-      last_name: Faker::Name.last_name,
-    )
+    Guest.find_by(string_id: guest_id)
   end
 end
