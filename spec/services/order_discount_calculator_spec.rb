@@ -19,10 +19,6 @@ describe OrderDiscountCalculator do
   context 'with valid input' do
     let(:inputs) do
       {
-        timestamp: "2021-09-21T08:38:12.830Z",
-        store_id: "CADE3B168C",
-        guest_id: "54D0D284B0",
-        transaction_id: "5AA3C3C7094AF3949E7D",
         items: items,
       }
     end
