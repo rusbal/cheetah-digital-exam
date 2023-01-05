@@ -74,7 +74,7 @@ describe OrderDiscountCalculator do
     end
 
     context 'purchase contains sku CCC' do
-      let(:discount) { 2 }
+      let(:discount) { 2.0 }
       let(:items) do
         [
           {
