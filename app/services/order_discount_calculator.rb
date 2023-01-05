@@ -1,5 +1,4 @@
 class OrderDiscountCalculator < ActiveInteraction::Base
-  MULTIPLIER = 2
   MINIMUM_SUBTOTAL = 10
   DISCOUNT_PERCENT = 0.20
   DISCOUNT_AMOUNT = 2.0
