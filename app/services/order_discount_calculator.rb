@@ -22,6 +22,8 @@ class OrderDiscountCalculator < ActiveInteraction::Base
     ].max
   end
 
+  private
+
   def total_meets_minimum?
     total >= MINIMUM_SUBTOTAL
   end
