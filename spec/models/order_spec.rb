@@ -64,6 +64,11 @@ RSpec.describe Order, type: :model do
     end
   end
 
+  it "validates uniqueness of order per transaction per store" do
+    order.save
+    expect { order.dup.save! }.to raise_error ActiveRecord::RecordInvalid
+  end
+
   describe "computed values" do
     let(:order) { FactoryBot.create(:order, discount: 2.50) }
     let!(:order_item1) { FactoryBot.create(:order_item, order: order, quantity: 2, price: 10.0) }

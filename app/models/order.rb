@@ -3,7 +3,10 @@ class Order < ApplicationRecord
   has_many :order_items
 
   validates :store_id, presence: true
-  validates :transaction_id, presence: true
+  validates :transaction_id, presence: true, uniqueness: {
+    scope: :store_id,
+    message: "must be unique per store"
+  }
   validates :timestamp, presence: true
   validates :discount, presence: true
   validates :points, presence: true
