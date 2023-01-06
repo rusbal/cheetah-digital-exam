@@ -3,6 +3,8 @@ module Api
     class OrdersController < ApplicationController
       def create
         @order = OrderProcessor.run!(create_params)
+      rescue ActiveInteraction::InvalidInteractionError => e
+        render_422(e.message)
       end
 
       private

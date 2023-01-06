@@ -40,4 +40,12 @@ describe 'Orders API', type: :request do
     parsed_body = JSON.parse(response.body)
     expect(parsed_body).to eq expected
   end
+
+  context 'invalid input' do
+    it 'will fail' do
+      post '/api/v1/orders', params: {}
+
+      expect(response).to have_http_status(422)
+    end
+  end
 end
