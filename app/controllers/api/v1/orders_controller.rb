@@ -1,6 +1,8 @@
 module Api
   module V1
     class OrdersController < ApplicationController
+      before_action :authentication
+
       def create
         @order = OrderProcessor.run!(create_params)
       rescue ActiveInteraction::InvalidInteractionError => e

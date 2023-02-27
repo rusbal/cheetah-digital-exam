@@ -10,15 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_01_05_124105) do
+ActiveRecord::Schema.define(version: 2023_02_02_063657) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "guests", force: :cascade do |t|
     t.string "string_id", null: false
-    t.string "first_name"
-    t.string "last_name"
+    t.string "first_name", null: false
+    t.string "last_name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -44,6 +44,19 @@ ActiveRecord::Schema.define(version: 2023_01_05_124105) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["guest_id"], name: "index_orders_on_guest_id"
     t.index ["store_id", "transaction_id"], name: "index_orders_on_store_id_and_transaction_id", unique: true
+  end
+
+  create_table "todos", force: :cascade do |t|
+    t.string "title"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "email"
+    t.string "password"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   add_foreign_key "order_items", "orders"
